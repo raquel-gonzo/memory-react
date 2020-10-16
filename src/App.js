@@ -1,9 +1,6 @@
 import React from "react";
 import "./App.css";
-// import Card from "./components/card";
 import GameBoard from './components/game-board';
-import { Image, Transformation } from "cloudinary-react";
-
 
 function App() {
   var attempts = 0;

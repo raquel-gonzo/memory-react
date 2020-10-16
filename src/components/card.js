@@ -1,12 +1,15 @@
 import React from "react";
-import Faces from './faces';
+import { Image, Transformation } from "cloudinary-react";
 
-const Card = () => {
-    
+const Card = (props) => {
   return (
-    <div className="card">
-        {/* <Faces /> */}
-    </div>
+    <Image
+      cloudName="raquel-gonzo"
+      className={props.className}
+      publicId={props.publicId}
+    >
+      <Transformation width="150" crop="scale" />
+    </Image>
   );
 };
 
