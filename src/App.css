@@ -1,3 +1,30 @@
+/* *{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+} */
+
 .App {
   text-align: center;
+}
+
+#game-board{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+
+}
+
+.card{
+  /* position: absolute; */
+}
+
+.front-face,
+.back-face {
+    padding: 20px;
+    border-radius: 20px;
+    border: 2px solid deeppink;
+    background-color: mediumslateblue;
+    backface-visibility: hidden;
 }

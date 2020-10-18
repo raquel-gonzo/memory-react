@@ -58,7 +58,7 @@ const GameBoard = () => {
   }
 
   return (
-    <div>
+    <div id="game-board" >
       {Cards.map((card, i) => {
         return (
           <Card
