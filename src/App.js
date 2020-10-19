@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import GameBoard from './components/game-board';
 
 function App() {
-  var attempts = 0;
+
+  const [cards, setCards] = useState([]);
+
+
 
   return (
     <div className="App">
       <h1>match the sugar skulls!</h1>
-
-      <h2>attempts: {attempts}</h2>
 
       <button>new game</button>
 

@@ -1,71 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "./card";
 import Cards from "../cards.json";
 
 const GameBoard = () => {
-  let hasFlippedCard = false;
-  let lockBoard = false;
-  let firstCard, secondCard;
 
-  function flipCard() {
-    if (lockBoard) return;
-    if (this === firstCard) return;
+  const [shuffledCards, setShuffledCards] = useState([])
 
-    this.classList.add("flip");
+  useEffect(() => {
+    setShuffledCards(shuffle(Cards))
+  }, [])
 
-    if (!hasFlippedCard) {
-      // first click
-      hasFlippedCard = true;
-      firstCard = this;
-      return;
+  const [flipped, setFlipped ] = useState([]);
+
+  const handleClick = (id) => {
+    setFlipped([...flipped, id])
+  }
+
+  //shuffle (youtube demo)
+  function shuffle(array) {
+    const _array = array.slice(0)
+    for (let i=0; i< array.length -1 ; i++){
+      let randomIndex = Math.floor(Math.random() * (i+1))
+      let temp = _array[i]
+      _array[i] = _array[randomIndex];
+      _array[randomIndex] = temp
     }
-    // second click
-    hasFlippedCard = false;
-    secondCard = this;
-
-    checkForMatch();
-  }
-
-  function checkForMatch() {
-    // do cards match?
-    if (firstCard.dataset.framework === secondCard.dataset.framework) {
-      disableCards();
-    } else {
-      unflipCards();
-    }
-  }
-
-  function disableCards() {
-    // match detected
-    firstCard.removeEventListener("click", flipCard);
-    secondCard.removeEventListener("click", flipCard);
-    resetBoard();
-  }
-
-  function unflipCards() {
-    // no match
-    lockBoard = true;
-    setTimeout(() => {
-      firstCard.classList.remove("flip");
-      secondCard.classList.remove("flip");
-      resetBoard();
-    }, 500);
-  }
-
-  function resetBoard() {
-    [hasFlippedCard, lockBoard] = [false, false];
-    [firstCard, secondCard] = [null, null];
+    console.log(_array)
+    return _array
   }
 
   return (
     <div id="game-board" >
-      {Cards.map((card, i) => {
+      {shuffledCards.map((card, i) => {
         return (
           <Card
             key={i}
+            id={card.id}
             className={card.className}
             publicId={card.publicId}
             alt={card.alt}
+            flipped={flipped.includes(card.id)}
+            handleClick={()=> handleClick(card.id)}
           />
         );
       })}
