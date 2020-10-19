@@ -3,20 +3,40 @@ import Card from "./card";
 import Cards from "../cards.json";
 
 const GameBoard = () => {
+  // const [cards, setCards] = useState([]);
 
   const [shuffledCards, setShuffledCards] = useState([])
+  const [flipped, setFlipped ] = useState([]);
+  const [solved, setSolved] = useState([]);
+  const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
     setShuffledCards(shuffle(Cards))
   }, [])
 
-  const [flipped, setFlipped ] = useState([]);
-
   const handleClick = (id) => {
-    setFlipped([...flipped, id])
+    setDisabled(true)
+    if (flipped.length === 0){
+      setFlipped([id])
+      setDisabled(false)
+      return
+    } else {
+      if (sameCardClicked(id)) return
+      setFlipped([flipped[0], id])
+      if (isMatch(id)) {
+        setSolved([ ...solved, flipped[0], id])
+      }
+    }
   }
 
-  //shuffle (youtube demo)
+  const sameCardClicked = (id) => flipped.includes(id)
+
+  const isMatch = (id) => {
+    const clickedCard = Cards.find((card) => card.id === id)
+    const flippedCard = Cards.find((card) => flipped[0] === card.id)
+    return flippedCard.publicId === clickedCard.publicId
+  }
+
   function shuffle(array) {
     const _array = array.slice(0)
     for (let i=0; i< array.length -1 ; i++){
@@ -40,7 +60,9 @@ const GameBoard = () => {
             publicId={card.publicId}
             alt={card.alt}
             flipped={flipped.includes(card.id)}
-            handleClick={()=> handleClick(card.id)}
+            // handleClick={()=> handleClick(card.id)}
+            handleClick={handleClick}
+            disabled={disabled}
           />
         );
       })}

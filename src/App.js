@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./App.css";
 import GameBoard from './components/game-board';
 
 function App() {
-
-  const [cards, setCards] = useState([]);
-
-
 
   return (
     <div className="App">
