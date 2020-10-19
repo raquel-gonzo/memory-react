@@ -3,7 +3,6 @@ import Card from "./card";
 import Cards from "../cards.json";
 
 const GameBoard = () => {
-  // const [cards, setCards] = useState([]);
 
   const [shuffledCards, setShuffledCards] = useState([])
   const [flipped, setFlipped ] = useState([]);
@@ -25,8 +24,16 @@ const GameBoard = () => {
       setFlipped([flipped[0], id])
       if (isMatch(id)) {
         setSolved([ ...solved, flipped[0], id])
+        resetCards()
+      } else {
+        setTimeout(resetCards, 2000)
       }
     }
+  }
+
+  const resetCards = () => {
+    setFlipped([])
+    setDisabled(false)
   }
 
   const sameCardClicked = (id) => flipped.includes(id)
@@ -60,9 +67,9 @@ const GameBoard = () => {
             publicId={card.publicId}
             alt={card.alt}
             flipped={flipped.includes(card.id)}
-            // handleClick={()=> handleClick(card.id)}
             handleClick={handleClick}
-            disabled={disabled}
+            disabled={disabled || solved.includes(card.id)}
+            solved={solved.includes(card.id)}
           />
         );
       })}

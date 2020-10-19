@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { Image, Transformation } from "cloudinary-react";
 
-const Card = ({ id, className, publicId, alt, flipped, handleClick, disabled}) => {
+const Card = ({ id, className, publicId, alt, flipped, handleClick, disabled, solved}) => {
   // each card should have a front-face and a back-face.
   return (
     <div className={`flip-container ${flipped ? "flipped" : ""}`}>
         <Image
           cloudName="raquel-gonzo"
           className={flipped ? className : "back-face"}
-          publicId={flipped ? publicId : "memory-react/cards-icon.png"}
+          publicId={flipped || solved ? publicId : "memory-react/cards-icon.png"}
           onClick={() => disabled ? null : handleClick(id)}
           alt={alt}
         >
