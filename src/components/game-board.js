@@ -52,7 +52,6 @@ const GameBoard = () => {
       _array[i] = _array[randomIndex];
       _array[randomIndex] = temp
     }
-    console.log(_array)
     return _array
   }
 

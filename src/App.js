@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <h1>match the sugar skulls!</h1>
 
-      <button>new game</button>
+      {/* <button >new game</button> */}
 
       < GameBoard />
 

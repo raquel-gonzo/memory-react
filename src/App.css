@@ -1,11 +1,16 @@
-/* *{
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-} */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@600&display=swap');
 
 .App {
   text-align: center;
+  font-family: 'Josefin Slab', serif;
+}
+
+body{
+  background-color: thistle;
+}
+
+h1{
+  font-size: 60px;
 }
 
 #game-board{
@@ -13,11 +18,14 @@
   justify-content: center;
   flex-wrap: wrap;
   position: relative;
-
+  width: 950px;
+  margin: 0 auto;
 }
 
-.card{
-  /* position: absolute; */
+.flip-container{
+  margin: 5px;
+  transform-style: preserve-3d;
+  transition: transform .5s;
 }
 
 .front-face,
@@ -27,4 +35,10 @@
     border: 2px solid deeppink;
     background-color: mediumslateblue;
     backface-visibility: hidden;
+}
+
+.front-face{
+  transform: scale(.97);
+  transition: transform .9s;
+  transform: rotateY(180deg);
 }
