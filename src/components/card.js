@@ -7,7 +7,7 @@ const Card = ({ id, className, publicId, alt, flipped, handleClick, disabled, so
     <div className={`flip-container ${flipped ? "flipped" : ""}`}>
         <Image
           cloudName="raquel-gonzo"
-          className={flipped ? className : "back-face"}
+          className={flipped ? className : "card back-face"}
           publicId={flipped || solved ? publicId : "memory-react/cards-icon.png"}
           onClick={() => disabled ? null : handleClick(id)}
           alt={alt}

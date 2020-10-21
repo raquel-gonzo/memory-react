@@ -17,7 +17,6 @@ h1{
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  position: relative;
   width: 950px;
   margin: 0 auto;
 }
@@ -25,7 +24,19 @@ h1{
 .flip-container{
   margin: 5px;
   transform-style: preserve-3d;
-  transition: transform .5s;
+  /* transform: rotateY(180deg); */
+  transition: transform 0.8s;
+}
+
+/* .flip-container:active {
+  transform: scale(.97);
+  transition: transform .9s;
+  transform: rotateY(180deg);
+} */
+.flipped {
+  transform: scale(.97) rotateY(360deg);
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
 }
 
 .front-face,
@@ -37,8 +48,3 @@ h1{
     backface-visibility: hidden;
 }
 
-.front-face{
-  transform: scale(.97);
-  transition: transform .9s;
-  transform: rotateY(180deg);
-}
