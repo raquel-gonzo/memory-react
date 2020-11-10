@@ -8,9 +8,12 @@ const GameBoard = () => {
   const [flipped, setFlipped ] = useState([]);
   const [solved, setSolved] = useState([]);
   const [disabled, setDisabled] = useState(false);
+  const [cardWidth, setCardWidth] = useState("150");
+  const [cardHeight, setCardHeight] = useState("210");
 
   useEffect(() => {
-    setShuffledCards(shuffle(Cards))
+    setShuffledCards(shuffle(Cards));
+    checkWindowWidth();
   }, [])
 
   const handleClick = (id) => {
@@ -55,6 +58,18 @@ const GameBoard = () => {
     return _array
   }
 
+  window.addEventListener("resize", checkWindowWidth);
+
+  function checkWindowWidth() {
+    if (window.innerWidth < 700) {
+      setCardWidth("60");
+      setCardHeight("90");
+    } else {
+      setCardWidth("150");
+      setCardHeight("210");
+    }
+  }
+
   return (
     <div id="game-board" >
       {shuffledCards.map((card, i) => {
@@ -65,6 +80,8 @@ const GameBoard = () => {
             className={card.className}
             publicId={card.publicId}
             alt={card.alt}
+            cardWidth={cardWidth}
+            cardHeight={cardHeight}
             flipped={flipped.includes(card.id)}
             handleClick={handleClick}
             disabled={disabled || solved.includes(card.id)}

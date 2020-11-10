@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Image, Transformation } from "cloudinary-react";
 
-const Card = ({ id, className, publicId, alt, flipped, handleClick, disabled, solved}) => {
+const Card = ({ id, className, publicId, alt, cardWidth, cardHeight, flipped, handleClick, disabled, solved }) => {
+
   // each card should have a front-face and a back-face.
   return (
     <div className={`flip-container ${flipped ? "flipped" : ""}`}>
@@ -12,7 +13,7 @@ const Card = ({ id, className, publicId, alt, flipped, handleClick, disabled, so
           onClick={() => disabled ? null : handleClick(id)}
           alt={alt}
         >
-          <Transformation width="150" height="210" crop="scale" />
+          <Transformation width={cardWidth} height={cardHeight} crop="scale" />
         </Image>
     </div>
   );
