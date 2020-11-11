@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Image, Transformation } from "cloudinary-react";
 
 const Card = ({ id, className, publicId, alt, cardWidth, cardHeight, flipped, handleClick, disabled, solved }) => {
